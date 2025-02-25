@@ -16,6 +16,16 @@ if (window.ALIST.base_path) {
 
 export let api = import.meta.env.VITE_API_URL as string
 if (window.ALIST.api) {
+  const alistResponse = await fetch(window.ALIST.api, {
+    method: "GET",
+    redirect: "follow", // 确保跟随重定向
+  })
+
+  // 检查响应是否成功
+  if (!alistResponse.ok) {
+    throw new Error(`HTTP error! status: ${alistResponse.status}`)
+  }
+  window.ALIST.api = alistResponse.url
   api = window.ALIST.api
 }
 if (api === "/") {

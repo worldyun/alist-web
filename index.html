@@ -29,21 +29,10 @@
       window.ALIST = {
         cdn: undefined,
         monaco_cdn: undefined,
-        base_path: '',
-        api: undefined,
+        base_path: undefined,
+        api: "https://alist-stun.autoanime.cn/",
         main_color: undefined,
       }
-      const alistOriginalUrl = 'https://alist-stun.autoanime.cn';
-      const alistResponse = await fetch(url, {
-          method: 'GET',
-          redirect: 'follow' // 确保跟随重定向
-      });
-
-      // 检查响应是否成功
-      if (!alistResponse.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      window.ALIST.api = alistResponse.url;
       window.__dynamic_base__ = window.ALIST.cdn || ""
     </script>
   </head>
