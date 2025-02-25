@@ -16,22 +16,15 @@ if (window.ALIST.base_path) {
 
 export let api = import.meta.env.VITE_API_URL as string
 if (window.ALIST.api) {
-  fetch(window.ALIST.api, {
-    method: "GET",
-    redirect: "follow", // 确保跟随重定向
-  }).then((response: Response) => {
-    // 检查响应是否成功
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
+  const xhr = new XMLHttpRequest()
+  xhr.open("GET", window.ALIST.api, false) // 第三个参数为 `false` 表示同步请求
+  xhr.send()
 
-    // 返回重定向后的URL
+  if (xhr.status >= 200 && xhr.status < 400) {
+    api = xhr.responseURL
+  } else {
     api = window.ALIST.api
-    if (api.endsWith("/")) {
-      api = api.slice(0, -1)
-    }
-  })
-  api = window.ALIST.api
+  }
 }
 if (api === "/") {
   api = location.origin + base_path
