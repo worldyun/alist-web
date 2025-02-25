@@ -31,7 +31,7 @@ if (window.ALIST.api) {
       api = api.slice(0, -1)
     }
   })
-  // api = window.ALIST.api
+  api = window.ALIST.api
 }
 if (api === "/") {
   api = location.origin + base_path
