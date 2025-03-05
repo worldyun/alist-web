@@ -32,7 +32,10 @@ if (api.endsWith("/")) {
   api = api.slice(0, -1)
 }
 
-let permanent_api = window.ALIST.permanent_api as string
+let permanent_api = import.meta.env.VITE_API_URL as string
+if (window.ALIST.permanent_api) {
+  permanent_api = window.ALIST.permanent_api
+}
 if (permanent_api.endsWith("/")) {
   permanent_api = permanent_api.slice(0, -1)
   window.ALIST.permanent_api = permanent_api
