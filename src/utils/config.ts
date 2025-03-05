@@ -21,10 +21,9 @@ if (window.ALIST.api) {
   xhr.send()
 
   if (xhr.status >= 200 && xhr.status < 400) {
-    api = xhr.responseURL
-  } else {
-    api = window.ALIST.api
+    window.ALIST.api = xhr.responseText
   }
+  api = window.ALIST.api
 }
 if (api === "/") {
   api = location.origin + base_path
@@ -33,6 +32,11 @@ if (api.endsWith("/")) {
   api = api.slice(0, -1)
 }
 
+if (window.ALIST.permanent_api.endsWith("/")) {
+  window.ALIST.permanent_api = window.ALIST.permanent_api.slice(0, -1)
+}
+
+window.ALIST.api = api
 export const monaco_cdn =
   window.ALIST.monaco_cdn ||
   "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/monaco-editor/0.33.0-dev.20220228/min/vs"

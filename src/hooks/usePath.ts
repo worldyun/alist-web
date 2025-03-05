@@ -170,7 +170,14 @@ export const usePath = () => {
           ObjStore.setReadme(data.readme)
           ObjStore.setHeader(data.header)
           ObjStore.setRelated(data.related ?? [])
-          ObjStore.setRawUrl(data.raw_url)
+          let raw_url = data.raw_url
+          if (raw_url.startsWith(window.ALIST.api)) {
+            raw_url = raw_url.replace(
+              window.ALIST.api,
+              window.ALIST.permanent_api,
+            )
+          }
+          ObjStore.setRawUrl(raw_url)
           ObjStore.setState(State.File)
         }
       },
