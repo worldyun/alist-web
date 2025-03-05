@@ -170,11 +170,11 @@ export const usePath = () => {
           ObjStore.setReadme(data.readme)
           ObjStore.setHeader(data.header)
           ObjStore.setRelated(data.related ?? [])
-          let raw_url = data.raw_url
-          if (raw_url.startsWith(window.ALIST.api)) {
+          let raw_url = data.raw_url as string
+          if (raw_url.startsWith("https://alistv4.autoanime.cn")) {
             raw_url = raw_url.replace(
-              window.ALIST.api,
-              window.ALIST.permanent_api,
+              /https:\/\/[^\/]+/,
+              `https://alist-stun.autoanime.cn`,
             )
           }
           ObjStore.setRawUrl(raw_url)
