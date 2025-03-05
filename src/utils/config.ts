@@ -32,8 +32,10 @@ if (api.endsWith("/")) {
   api = api.slice(0, -1)
 }
 
-if (window.ALIST.permanent_api.endsWith("/")) {
-  window.ALIST.permanent_api = window.ALIST.permanent_api.slice(0, -1)
+let permanent_api = window.ALIST.permanent_api
+if (permanent_api.endsWith("/")) {
+  permanent_api = permanent_api.slice(0, -1)
+  window.ALIST.permanent_api = permanent_api
 }
 
 window.ALIST.api = api
